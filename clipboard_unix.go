@@ -2,13 +2,13 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+//go:build freebsd || linux || netbsd || openbsd || solaris || dragonfly
 // +build freebsd linux netbsd openbsd solaris dragonfly
 
 package clipboard
 
 import (
 	"errors"
-	"os"
 	"os/exec"
 )
 
@@ -48,8 +48,8 @@ var (
 	missingCommands = errors.New("No clipboard utilities available. Please install xsel, xclip, wl-clipboard or Termux:API add-on for termux-clipboard-get/set.")
 )
 
-func init() {
-	if os.Getenv("WAYLAND_DISPLAY") != "" {
+func initClipboard(envMap map[string]string) {
+	if envMap["WAYLAND_DISPLAY"] != "" {
 		pasteCmdArgs = wlpasteArgs
 		copyCmdArgs = wlcopyArgs
 

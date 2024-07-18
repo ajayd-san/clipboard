@@ -5,12 +5,14 @@
 package clipboard_test
 
 import (
+	"os"
 	"testing"
 
 	. "github.com/atotto/clipboard"
 )
 
 func TestCopyAndPaste(t *testing.T) {
+	InitClipboard(os.Environ())
 	expected := "日本語"
 
 	err := WriteAll(expected)
@@ -29,6 +31,7 @@ func TestCopyAndPaste(t *testing.T) {
 }
 
 func TestMultiCopyAndPaste(t *testing.T) {
+	InitClipboard(os.Environ())
 	expected1 := "French: éèêëàùœç"
 	expected2 := "Weird UTF-8: 💩☃"
 
@@ -60,12 +63,14 @@ func TestMultiCopyAndPaste(t *testing.T) {
 }
 
 func BenchmarkReadAll(b *testing.B) {
+	InitClipboard(os.Environ())
 	for i := 0; i < b.N; i++ {
 		ReadAll()
 	}
 }
 
 func BenchmarkWriteAll(b *testing.B) {
+	InitClipboard(os.Environ())
 	text := "いろはにほへと"
 	for i := 0; i < b.N; i++ {
 		WriteAll(text)

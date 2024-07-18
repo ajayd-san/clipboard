@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+//go:build windows
 // +build windows
 
 package clipboard
@@ -34,6 +35,13 @@ var (
 	globalUnlock = kernel32.NewProc("GlobalUnlock")
 	lstrcpy      = kernel32.NewProc("lstrcpyW")
 )
+
+func initClipboard(envMap map[string]string) {
+	/*
+	 this func does nothing and is there only to maintain consistant api across
+	 different platforms
+	*/
+}
 
 // waitOpenClipboard opens the clipboard, waiting for up to a second to do so.
 func waitOpenClipboard() error {
