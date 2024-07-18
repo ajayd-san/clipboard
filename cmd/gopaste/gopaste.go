@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/atotto/clipboard"
+	"github.com/ajayd-san/clipboard"
 )
 
 func main() {

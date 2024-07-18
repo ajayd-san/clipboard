@@ -8,7 +8,7 @@ import (
 	"os"
 	"testing"
 
-	. "github.com/atotto/clipboard"
+	. "github.com/ajayd-san/clipboard"
 )
 
 func TestCopyAndPaste(t *testing.T) {
